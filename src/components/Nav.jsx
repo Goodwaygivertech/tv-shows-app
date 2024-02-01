@@ -11,7 +11,7 @@ export default function Nav() {
         <div class="container-fluid">
           <Link to={"/"}  class="navbar-brand ">TV Shows </Link>
 
-          <div className="d-flex gap-4">
+          <div className="d-flex gap-1  gap-sm-2 gap-md-3 gap-lg-4">
             <Link
               to={"/show-my-bookings"}
               class="btn btn-primary position-relative "
