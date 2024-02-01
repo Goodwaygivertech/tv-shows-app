@@ -4,7 +4,8 @@ import Nav from "./components/Nav";
 import ShowList from "./components/ShowList";
 import ShowDetails from "./components/ShowDetails";
 import ShowMyBookings from "./components/ShowMyBookings";
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -36,11 +37,12 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  const [count, setCount] = useState(0);
 
   return (
     <>
       <RouterProvider router={router} />
+      <ToastContainer />
+
     </>
   );
 }

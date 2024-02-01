@@ -9,7 +9,7 @@ export default function Nav() {
     <>
       <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
-          <Link to={"/"}  class="navbar-brand">TV Shows </Link>
+          <Link to={"/"}  class="navbar-brand ">TV Shows </Link>
 
           <div className="d-flex gap-4">
             <Link

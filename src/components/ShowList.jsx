@@ -15,13 +15,13 @@ export default function ShowList() {
 
   return (
     <>
-      <div className="container">
+      <div className="container mt-3 mx-auto">
         <div className="row">
           {showList && showList.length > 0
             ? showList.map(({ score, show }) => {
                 return (
                   <>
-                    <div class="card col-3 mb-2">
+                    <div class="card mycol mb-2">
                       <div className="listImg">
                         <img
                           src={show.image?.original}

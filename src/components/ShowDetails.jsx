@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const ShowDetails = () => {
   const [showDetails, setShowDetails] = useState(null);
@@ -45,24 +46,31 @@ const ShowDetails = () => {
         type: showDetails.type,
         bookingTime: new Date().toISOString(),
       };
-
+  
       // Get existing bookings from localStorage or initialize an empty array
-      const existingBookings =
-        JSON.parse(localStorage.getItem("bookings")) || [];
-
-      // Add the new booking to the array
-      existingBookings.push(bookingDetails);
-
-      // Save the updated bookings array to localStorage
-      localStorage.setItem("bookings", JSON.stringify(existingBookings));
-
-      // Optionally, you can display a confirmation message or trigger other actions
-      console.log("Show booked successfully!", bookingDetails);
+      const existingBookings = JSON.parse(localStorage.getItem("bookings")) || [];
+  
+      // Check if the show is already booked
+      const isAlreadyBooked = existingBookings.some(booking => booking.id === bookingDetails.id);
+  
+      if (isAlreadyBooked) {
+        console.log("Show is already booked.");
+        // Optionally, you can display a message or handle the situation accordingly
+        toast.error("This show is already booked.");
+      } else {
+        // Add the new booking to the array
+        existingBookings.push(bookingDetails);
+  
+        // Save the updated bookings array to localStorage
+        localStorage.setItem("bookings", JSON.stringify(existingBookings));
+  
+        // Display a confirmation message
+        toast.success("Show booked successfully! View in Bookings");
+      }
     } else {
       console.error("Unable to book the show. Show details not available.");
     }
   };
-
   return (
     <div className="container my-5 ">
       {showDetails ? (
@@ -114,7 +122,7 @@ const ShowDetails = () => {
                   </tr>
                   <tr>
                     <td>Rating</td>
-                    <td>{showDetails.rating.average}</td>
+                    <td>{showDetails.rating?.average}</td>
                   </tr>
                   <tr>
                     <td>Network</td>
